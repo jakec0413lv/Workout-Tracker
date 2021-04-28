@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit Exercise{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <div class = "radio-button-bank">
+      <input type="radio" name="muscle-groups" id="o1" value= "Chest">Chest</input>
+      <input type="radio" name="muscle-groups" id="o2" value= "Arms">Arms</input>
+      <input type="radio" name="muscle-groups" id="o3" value= "Back">Back</input>
+      <input type="radio" name="muscle-groups" id="o4" value= "Legs">Legs</input>
+   </div>
+    <div class = "input-area-bank">
+      <input title="Email" placeholder="{{post['exercise_name']}}" type="text" name="exercise_name" required><br>
+      <input title="Email" placeholder="{{post['set_count']}}" type="number" name="num_of_sets" required><br>
+      <input title="Email" placeholder="{{post['reps']}}" type="text" name="num_of_reps" required><br>
+      <input title="Email" placeholder="{{post['amt_weight']}}" type="text" name="amt_weight" required><br>
+    </div>
+    <button type="submit" method="POST">Update</button>
+  </form>
+  <form action="{{ url_for('tracker.delete', id=post['id']) }}" method="post">
+    <button class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">Delete</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,199 @@
+html {
+    font-family: sans-serif;
+    background: #eee;
+    padding: 1rem;
+    background-image: url("https://cdn.hipwallpaper.com/i/45/40/Xr6Voz.jpg");
+  }
+  
+  body {
+    max-width: 70%;
+    margin: 0 auto;
+  }
+
+  #main-header{
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace
+  }
+
+  #login-buttons{
+    margin: 0 auto;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: serif;
+    color: white;
+    margin: 1rem 0;
+  }
+  
+  #selection{
+    display: flex;
+    justify-content: space-evenly;
+    width: 75%;
+    background: rgba(0, 0, 0, .35);
+    margin: 5% auto;
+    padding: 5%;
+  }
+  
+  table{
+    color: white;
+    background: rgba(0, 0, 0, .7);
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  th{
+    border: white double 2px;
+  }
+
+  th, td{
+    padding: 0 10px;
+  }
+  #quote{
+    color: white;
+    margin: 10 auto;
+  }
+  a {
+    color: white;
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid lightgray;
+  }
+  
+  nav {
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    background: rgba(0, 0, 0, .35)
+  }
+  
+  nav h1 {
+    flex: auto;
+    margin: 0;
+  }
+  
+  nav h1 a {
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+  }
+  nav h3{
+    font-style: italic;
+  }
+  nav ul  {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: white;
+  }
+  
+  nav ul li a, nav ul li span, header .action {
+    display: block;
+    padding: 0.5rem;
+  }
+  
+  .content {
+    padding: 0 1rem 1rem;
+  }
+  
+  .content > header {
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    align-items: flex-end;
+  }
+  
+  .content > header h1 {
+    flex: auto;
+    margin: 1rem 0 0.25rem 0;
+  }
+  
+  .flash {
+    margin: 1em 0;
+    padding: 1em;
+    background: #cae6f6;
+    border: 1px solid #377ba8;
+  }
+  
+  .post > header {
+    display: flex;
+    align-items: flex-end;
+    font-size: 0.85em;
+  }
+  
+  .post > header > div:first-of-type {
+    flex: auto;
+  }
+  
+  .post > header h1 {
+    font-size: 1.5em;
+    margin-bottom: 0;
+  }
+  
+  .post .about {
+    color: slategray;
+    font-style: italic;
+  }
+  
+  .post .body {
+    white-space: pre-line;
+  }
+  
+  .content:last-child {
+    margin-bottom: 0;
+  }
+  
+  .content form {
+    margin: 5%;
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, .35)
+
+  }
+  
+  #login-input{
+    margin: 0 auto;
+  }
+
+  .content label {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: white;
+  }
+   
+  .content textarea {
+    min-height: 12em;
+    resize: vertical;
+  }
+  
+  button.danger {
+    color: #cc2f2e;
+  }
+  
+  input[type=submit] {
+    align-self: start;
+    min-width: 10em;
+  }
+
+  .radio-button-bank{
+    text-align: center;
+    margin: 10 auto;
+    padding: 10px;
+    color: white;
+  }
+
+  .input-area-bank{
+    text-align: center;
+    margin: 10 auto;
+    padding: 10px;
+    size: 33%;
+  }
+  
+  button{
+    width: 25%;
+    margin: 10 auto;
+    margin: 0 auto;
+  }

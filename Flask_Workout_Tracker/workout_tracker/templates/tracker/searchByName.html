@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Search By Name{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form method="POST">
+    <div class = "input-area-bank">
+        <input title="Email" placeholder="Exercise Name" type="text" name="exercise_name" required><br>
+    </div>
+    <button type="submit" method="POST">Search</button>
+</form>
+
+{% endblock %}

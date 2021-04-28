@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h3 id = "quote">{{quote}}</h3>
+{% endblock %}
+
+{% block content %}
+<div id="selection">
+  <div>
+    <a class="action" href="{{ url_for('tracker.searchByMuscleGroup') }}">Search By Muscle Group</a>
+  </div>
+  <div>
+    <a class="action" href="{{ url_for('tracker.searchByName') }}">Search By Exercise</a>
+  </div>
+  <div>
+    <a class="action" href="{{ url_for('tracker.create') }}">Add Exercise</a>
+  </div>
+</div>
+<table>
+    <tr>
+        <th>Muscle Group</th>
+        <th>Exercise Name</th>
+        <th>Sets</th>
+        <th>Reps</th>
+        <th>Weight</th>
+        <th>Date</th>
+        <th>Edit</th>
+    </tr>
+{% for post in posts %}
+    <tr>
+        <td>{{post['muscle_group']}}</td>
+        <td>{{post['exercise_name']}}</td>
+        <td>{{post['set_count']}}</td>
+        <td>{{post['reps']}}</td>
+        <td>{{post['amt_weight']}}</td>
+        <td>{{post['created'].strftime('%Y-%m-%d')}}</td>
+        <td><a class="action" href="{{ url_for('tracker.update', id=post['id']) }}">Edit</a></td>
+    </tr>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+{% endfor %}
+</table>
+{% endblock %}
