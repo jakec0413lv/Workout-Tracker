@@ -7,16 +7,16 @@
 {% block content %}
   <form method="post">
     <div class = "radio-button-bank">
-      <input type="radio" name="muscle-groups" id="o1" value= "Chest">Chest</input>
-      <input type="radio" name="muscle-groups" id="o2" value= "Arms">Arms</input>
-      <input type="radio" name="muscle-groups" id="o3" value= "Back">Back</input>
-      <input type="radio" name="muscle-groups" id="o4" value= "Legs">Legs</input>
+      <input type="radio" name="muscle-groups" id="o1" value= "Chest" required>Chest</input>
+      <input type="radio" name="muscle-groups" id="o2" value= "Arms" required>Arms</input>
+      <input type="radio" name="muscle-groups" id="o3" value= "Back" required>Back</input>
+      <input type="radio" name="muscle-groups" id="o4" value= "Legs"required>Legs</input>
    </div>
     <div class = "input-area-bank">
       <input title="Email" placeholder="{{post['exercise_name']}}" type="text" name="exercise_name" required><br>
-      <input title="Email" placeholder="{{post['set_count']}}" type="number" name="num_of_sets" required><br>
-      <input title="Email" placeholder="{{post['reps']}}" type="text" name="num_of_reps" required><br>
-      <input title="Email" placeholder="{{post['amt_weight']}}" type="text" name="amt_weight" required><br>
+      <input title="Email" placeholder="{{post['set_count']}}" type="number" name="num_of_sets" required min=1 max = 100><br>
+      <input title="Email" placeholder="{{post['reps']}}" type="text" name="num_of_reps" required min=1 max = 100><br>
+      <input title="Email" placeholder="{{post['amt_weight']}}" type="text" name="amt_weight" required min=1 max = 1000><br>
     </div>
     <button type="submit" method="POST">Update</button>
   </form>
