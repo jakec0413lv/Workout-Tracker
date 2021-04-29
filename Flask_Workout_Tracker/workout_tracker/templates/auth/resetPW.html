@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Reset Password{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h3>Reset your password with the code sent to your email!</h3>
+<form method="POST">
+<div class = "input-area-bank">
+    <label for="username">Username</label>
+    <input type="email" name="username" id="username" required>
+    <label for="password">Reset Code</label>
+    <input type="text" name="reset-code" id="reset-code" required>
+    <label for="password">New Password</label>
+    <input type="password" name="new-password" id="new-password" required>
+    <input type="submit" name="password-reset" value="Reset Password" id="reset-pw-input">
+  </div>
+  </form>
+{% endblock %}
