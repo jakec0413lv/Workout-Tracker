@@ -13,8 +13,8 @@ import string
 import random
 
 def send_email(email, reset_code):
-    from_email="---------"
-    from_password="----------"
+    from_email="----"
+    from_password="----"
     to_email=email
 
     subject="Password Reset"
@@ -137,7 +137,8 @@ def resetPW():
             )
             db.commit()
             return redirect(url_for('auth.login'))
-       
+
+        flash(error)
 
     return render_template('auth/resetPW.html')
 
