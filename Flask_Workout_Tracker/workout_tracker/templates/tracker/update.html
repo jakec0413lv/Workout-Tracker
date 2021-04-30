@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+<div id = "update-post">
   <form method="post">
     <div class = "radio-button-bank">
       <input type="radio" name="muscle-groups" id="o1" value= "Chest" required>Chest</input>
@@ -12,15 +13,16 @@
       <input type="radio" name="muscle-groups" id="o3" value= "Back" required>Back</input>
       <input type="radio" name="muscle-groups" id="o4" value= "Legs"required>Legs</input>
    </div>
-    <div class = "input-area-bank">
-      <input title="Email" placeholder="{{post['exercise_name']}}" type="text" name="exercise_name" required><br>
-      <input title="Email" placeholder="{{post['set_count']}}" type="number" name="num_of_sets" required min=1 max = 100><br>
-      <input title="Email" placeholder="{{post['reps']}}" type="text" name="num_of_reps" required min=1 max = 100><br>
-      <input title="Email" placeholder="{{post['amt_weight']}}" type="text" name="amt_weight" required min=1 max = 1000><br>
+    <div class = "update-input-area-bank">
+      <input title="Name" placeholder="{{post['exercise_name']}}" type="text" name="exercise_name" required><br>
+      <input title="Sets" placeholder="{{post['set_count']}}" type="number" name="num_of_sets" required min=1 max = 100><br>
+      <input title="Reps" placeholder="{{post['reps']}}" type="number" name="num_of_reps" required min=1 max = 100><br>
+      <input title="Weight" placeholder="{{post['amt_weight']}}" type="number" name="amt_weight" required min=1 max = 1000><br>
     </div>
     <button type="submit" method="POST">Update</button>
   </form>
   <form action="{{ url_for('tracker.delete', id=post['id']) }}" method="post">
     <button class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">Delete</button>
   </form>
+</div>
 {% endblock %}

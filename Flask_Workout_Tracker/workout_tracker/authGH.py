@@ -13,8 +13,8 @@ import string
 import random
 
 def send_email(email, reset_code):
-    from_email="----"
-    from_password="----"
+    from_email="-------"
+    from_password="------"
     to_email=email
 
     subject="Password Reset"
@@ -61,7 +61,7 @@ def register():
 
         flash(error)
 
-    return render_template('auth/register.html', message=error)
+    return render_template('auth/register.html')
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():

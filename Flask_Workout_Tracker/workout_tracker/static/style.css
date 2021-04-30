@@ -21,6 +21,18 @@ html {
     margin: 0 auto;
   }
   
+  #login-input:hover{
+    background-color: rgb(67, 65, 65); 
+    color: white;
+    border-radius: 5%;
+    box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.515), 0 17px 50px 0 rgba(255, 255, 255, 0.515);
+    transition: 0.3s;
+  }
+
+  .selection-box{
+    text-align: center;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: serif;
     color: white;
@@ -185,15 +197,48 @@ html {
     color: white;
   }
 
+  #S-by-M{
+    width:35%;
+  }
+
   .input-area-bank{
     text-align: center;
     margin: 10 auto;
-    padding: 10px;
+    padding: 5px;
     size: 33%;
   }
   
   button{
-    width: 25%;
+    width: 40%;
     margin: 10 auto;
     margin: 0 auto;
+    padding: 10px;
+  }
+
+  input[type=number]{
+    width: 75%
+  }
+
+  button:hover {
+    background-color: rgb(67, 65, 65); 
+    color: white;
+    border-radius: 5%;
+    box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.515), 0 17px 50px 0 rgba(255, 255, 255, 0.515);
+    transition: 0.3s;
+  }
+
+  #update-post{
+    text-align: center;
+    margin: 10 auto;
+    padding: 5px;
+    size: 33%;
+  }
+
+  #update-post input[type=number]{
+    width: 15%;
+  }
+
+  #update-post button{
+    width: 20%;
+    margin: 10 auto;
   }

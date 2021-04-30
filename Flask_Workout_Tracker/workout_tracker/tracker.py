@@ -15,83 +15,65 @@ quotes = ['"Of course it’s hard. It’s supposed to be hard. If it were easy, 
             '"Your body can stand almost anything. It’s your mind that you have to convince."',
             '"Success isn’t always about greatness. It’s about consistency. Consistent hard work gains success. Greatness will come."']
 
-@bp.route('/')
+@bp.route('/', methods=('GET', 'POST'))
 @login_required
 def index():
-    db = get_db()
-    posts = []
-    
-    return render_template('tracker/index.html', posts=posts, quote = random.choice(quotes))
-
-@bp.route('/create', methods=('GET', 'POST'))
-@login_required
-def create():
-    if request.method == 'POST':
-        muscleGroup = request.form['muscle-groups']
-        name = request.form['exercise_name']
-        sets = request.form['num_of_sets']
-        reps = request.form['num_of_reps']
-        weight = request.form['amt_weight']
-        error = None
-
-        if not muscleGroup:
-            error = 'Title is required.'
-
-        if error is not None:
+    posts=[]
+    if request.method == "POST":
+        if "muscle-groups" in request.form and "exercise_name" in request.form:
+            error = "Please only use one form at a time!"
             flash(error)
+            return render_template('tracker/index.html', posts=posts, quote = random.choice(quotes))
+        elif "muscle-groups" in request.form and not "exercise_name" in request.form:
+            muscleGroup = request.form['muscle-groups']
+            error = None
+            if error is not None:
+                flash(error)
+            else:
+                db = get_db()
+                posts = db.execute(
+                'SELECT muscle_group, exercise_name, set_count, reps, amt_weight, created, p.id'
+                ' FROM post p JOIN user u ON p.author_id = u.id'
+                ' WHERE muscle_group = ? AND u.id = ?'
+                'ORDER BY created DESC', (muscleGroup,  g.user['id'])
+                ).fetchall()
+                return render_template('tracker/index.html', posts=posts, quote = random.choice(quotes))
+        elif "exercise_name" in request.form and not "muscle-groups" in request.form:
+            name = request.form['exercise_name']
+            error = None
+
+            if error is not None:
+                flash(error)
+            else:
+                db = get_db()
+                posts = db.execute(
+                'SELECT muscle_group, exercise_name, set_count, reps, amt_weight, created, p.id'
+                ' FROM post p JOIN user u ON p.author_id = u.id'
+                ' WHERE exercise_name = ? AND u.id = ?'
+                'ORDER BY created DESC', (name.capitalize(), g.user['id'])
+                ).fetchall()
+                return render_template('tracker/index.html', posts=posts, quote = random.choice(quotes))
         else:
-            db = get_db()
-            db.execute(
+            muscleGroup = request.form['muscle-groups-add']
+            name = request.form['exercise_name_add']
+            sets = request.form['num_of_sets']
+            reps = request.form['num_of_reps']
+            weight = request.form['amt_weight']
+            error = None
+
+            if error is not None:
+                flash(error)
+            else:
+                db = get_db()
+                db.execute(
                 'INSERT INTO post (muscle_group, exercise_name, set_count, reps, amt_weight, author_id)'
                 ' VALUES (?, ?, ?, ?, ?, ?)',
-                (muscleGroup, name, sets, reps, weight, g.user['id'])
-            )
-            db.commit()
-            return redirect(url_for('tracker.index', posts=[], quote = random.choice(quotes)))
+                (muscleGroup, name.capitalize(), sets, reps, weight, g.user['id'])
+                )
+                db.commit()
+                return redirect(url_for('tracker.index', posts=[], quote = random.choice(quotes)))
+    return render_template('tracker/index.html', posts=posts, quote = random.choice(quotes))
 
-    return render_template('tracker/create.html')
-
-@bp.route('/searchByName', methods=('GET', 'POST'))
-@login_required
-def searchByName():
-    if request.method == 'POST':
-        name = request.form['exercise_name']
-        error = None
-
-        if error is not None:
-            flash(error)
-        else:
-            db = get_db()
-            posts = db.execute(
-            'SELECT muscle_group, exercise_name, set_count, reps, amt_weight, created, p.id'
-            ' FROM post p JOIN user u ON p.author_id = u.id'
-            ' WHERE exercise_name = ? AND u.id = ?'
-            'ORDER BY created DESC', (name, g.user['id'])
-            ).fetchall()
-            return render_template('tracker/index.html', posts=posts, quote = random.choice(quotes))
-
-    return render_template('tracker/searchByName.html')
-
-@bp.route('/searchByMuscleGroup', methods=('GET', 'POST'))
-@login_required
-def searchByMuscleGroup():
-    if request.method == 'POST':
-        muscleGroup = request.form['muscle-groups']
-        error = None
-
-        if error is not None:
-            flash(error)
-        else:
-            db = get_db()
-            posts = db.execute(
-            'SELECT muscle_group, exercise_name, set_count, reps, amt_weight, created, p.id'
-            ' FROM post p JOIN user u ON p.author_id = u.id'
-            ' WHERE muscle_group = ? AND u.id = ?'
-            'ORDER BY created DESC', (muscleGroup,  g.user['id'])
-            ).fetchall()
-            return render_template('tracker/index.html', posts=posts, quote = random.choice(quotes))
-
-    return render_template('tracker/searchByMuscleGroup.html')
 
 def get_post(id, check_author=True):
     post = get_db().execute(
@@ -129,7 +111,7 @@ def update(id):
             db.execute(
                 'UPDATE post SET muscle_group = ?, exercise_name = ?, set_count = ?, reps =?, amt_weight = ?'
                 ' WHERE id = ?',
-                (muscleGroup, name, sets, reps, weight, id)
+                (muscleGroup, name.capitalize(), sets, reps, weight, id)
             )
             db.commit()
             return redirect(url_for('tracker.index'))
